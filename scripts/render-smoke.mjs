@@ -1,0 +1,2 @@
+import {exec,probe,renderArgs} from '../src/media.js';import {parsePreset} from '../src/core.js';
+const [src,dst]=process.argv.slice(2);const p=await probe(src);await exec('ffmpeg',renderArgs({source:src,dest:dst,logo:null,start:0,duration:p.duration,number:1,preset:parsePreset()}));const out=await probe(dst);if(!out.streams.some(s=>s.width===1080&&s.height===1920))throw Error('Unexpected output size');console.log('Render smoke PASS');
