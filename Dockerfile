@@ -11,7 +11,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --omit=dev --no-audit --no-fund
 COPY . .
-RUN mkdir -p /app/data && chown -R node:node /app
-USER node
+RUN mkdir -p /app/data /data && chown -R node:node /app /data
 EXPOSE 3000
 CMD ["npm","start"]
